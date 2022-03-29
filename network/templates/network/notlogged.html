@@ -1,0 +1,25 @@
+{% extends "network/layout.html" %}
+{% load static %}
+
+{% block script %}
+    <script src="{% static 'network/pagination.js' %}"></script>
+    <script src="{% static 'network/login.js' %}"></script>
+{% endblock %}
+
+{% block body %}
+
+    <div class="ml-2" id="all-posts-view">
+        <div>
+            <b id="header">All Posts</b>
+        </div>
+        <div class="ml-1" id="posts-list">
+        </div>
+        <br>
+        <nav aria-label="Posts navigation">
+          <ul class="pagination" id="posts-pagination">
+          </ul>
+        </nav>
+    </div>
+
+{% endblock %}
+

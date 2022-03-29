@@ -1,0 +1,33 @@
+{% extends "network/layout.html" %}
+{% load static %}
+
+{% block script %}
+    <script src="{% static 'network/csrfCookie.js' %}"></script>
+    <script src="{% static 'network/pagination.js' %}"></script>
+    <script src="{% static 'network/profile.js' %}"></script>
+{% endblock %}
+
+{% block body %}
+    {{ request.user.is_authenticated|json_script:"auth" }}
+    <div class="ml-2" id="all-posts-view">
+        <div>
+            <b> {{following}}</b> Following <b>{{followers}}</b> Followers
+            <input type="hidden" id="username" value={{request.user.username}}>
+            <input type="hidden" id="profile-name" value={{profile.username}}>
+            {% if request.user != profile and request.user.is_authenticated %}
+                    <input type="submit" id="follow" value={{is_following}} class="btn btn-primary ml-3" onclick="follow()"/>
+            {% endif %}
+            <br><br><div  id="posts-list">
+            </div>
+            <br>
+            <nav aria-label="Posts navigation">
+                <ul class="pagination" id="posts-pagination">
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+
+
+
+{% endblock %}

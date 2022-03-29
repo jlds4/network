@@ -1,0 +1,39 @@
+{% extends "network/layout.html" %}
+{% load static %}
+
+{% block script %}
+    <script src="{% static 'network/csrfCookie.js' %}"></script>
+    <script src="{% static 'network/pagination.js' %}"></script>
+    <script src="{% static 'network/network.js' %}"></script>
+{% endblock %}
+
+{% block body %}
+    {{ request.user.username|json_script:"username" }}
+    <div class="ml-2" id="all-posts-view">
+        <div>
+            <b id="header">All Posts</b>
+        </div>
+        <div class="ml-1" id="posts-list">
+        </div>
+        <br>
+        <nav aria-label="Posts navigation">
+          <ul class="pagination" id="posts-pagination">
+          </ul>
+        </nav>
+    </div>
+
+
+
+    <div id="new-post-view">
+
+        <h3>New Post</h3>
+        <form action="{% url 'new' %}" method="post" id="post-form">
+            {% csrf_token %}
+            <div class="form-group">
+                <input class="form-control" id="post-content" placeholder="Say something!">
+            </div>
+            <input type="submit" id="post-compose" value="Post" class="btn btn-primary" onclick="new_post()"/>
+        </form>
+    </div>
+
+{% endblock %}
